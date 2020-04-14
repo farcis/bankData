@@ -2,8 +2,6 @@ const axios = require('axios');
 const urljoin = require('url-join');
 
 const clientUrl = 'https://www.indecon.online';
-const endpoint = 'values';
-const element = 'cobre';
 
 const prepareFullUrl = (url, endpoint, optElement, optDate) => {
   let fullUrl;
@@ -40,26 +38,11 @@ const formatArray = (array) => {
   }, initialValue);
 };
 
+const getPromiseData = async (endpoint, optElement, optDate) => {
+  let data = [];
+  let url= '';
 
-const getDato = (url) => {
-  data = [];
-  console.log("estoy dentro de data");
-
-  let predata = axios
-    .get(url)
-    .then(res =>{
-      let values = res.data.values;
-      return formatArray(Object.entries(values));
-    })
-    .catch(err => {
-      console.log(err);
-      return null;
-    });
-};
-
-const getData = async (url) => {
-  data = [];
-  console.log("estoy dentro de dato");
+  url = prepareFullUrl(clientUrl,endpoint, optElement, optDate);
 
   let preData= await axios
     .get(url)
@@ -67,13 +50,13 @@ const getData = async (url) => {
       console.log(err);
       return null;
     });
+
   let values = preData.data.values;
+
   data = formatArray(Object.entries(values));
 
   return data;
 };
 
-let fullUrl = prepareFullUrl(clientUrl,endpoint, element);
-getData(fullUrl).then(response => console.log(response));
-//console.log(getDato(fullUrl));
+module.exports = getPromiseData;
 
