@@ -1,0 +1,17 @@
+{
+  "name": "server-bank-data",
+  "version": "1.0.0",
+  "description": "backend for BankData project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Francisco Arcis",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/polyfill": "^7.8.7",
+    "axios": "^0.19.2",
+    "express": "^4.17.1",
+    "url-join": "^4.0.1"
+  }
+}
